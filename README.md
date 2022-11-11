@@ -17,10 +17,17 @@ Para entender o que está sendo feito nos códigos é necessário atender aos se
 ## 💻 Executando
 
 Para executar o projeto corretamente, utilize os seguintes comandos:
-
+ ```
+ npm install
+ ```
+ ```
+ npm start
+ ```
 
 Para rodar os testes feitos no projeto, utilize o seguinte comando:
-
+ ```
+ npm test
+ ```
 
 ## 🤝 Colaborador
 
