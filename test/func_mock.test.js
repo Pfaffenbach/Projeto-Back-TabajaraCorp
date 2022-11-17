@@ -1,9 +1,9 @@
-const { UserModel } = require('../src/infrastructure/database');
-const user = require('../src/port/user_repository');
+const { FuncModel } = require('../src/infrastructure/database');
+const func = require('../src/port/func_repository');
 
 describe('create', () => {
-    it('Valid User', async () => {
-        UserModel.prototype.save = jest.fn().mockImplementation(() => ({
+    it('Valid Func', async () => {
+        FuncModel.prototype.save = jest.fn().mockImplementation(() => ({
             toObject: () => ({
                 id: 1,
                 nome: "João",
@@ -12,7 +12,7 @@ describe('create', () => {
             }),
         }));
 
-        expect(await user.create({
+        expect(await func.create({
             id: 1,
             nome: "João",
             email: "joao@inatel.br",
@@ -28,9 +28,9 @@ describe('create', () => {
     });
 });
 
-describe('editUser', () => {
+describe('editFunc', () => {
     it('Valid edit', async () => {
-        UserModel.findOneAndUpdate = jest.fn().mockImplementation(() => ({
+        FuncModel.findOneAndUpdate = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 toObject: () => ({
                     id: 1,
@@ -41,7 +41,7 @@ describe('editUser', () => {
             }),
         }));
 
-        expect(await user.update({
+        expect(await func.update({
             email: 'jao10@email.com',
             nome: 'Maria João',
         })).toEqual(
@@ -55,9 +55,9 @@ describe('editUser', () => {
     });
 });
 
-describe('listUsers', () => {
+describe('listFunc', () => {
     it('Valid list', async () => {
-        UserModel.find = jest.fn().mockImplementation(() => ({
+        FuncModel.find = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 id: 1,
                 email: 'cardozo10@email.com',
@@ -66,7 +66,7 @@ describe('listUsers', () => {
             }),
         }));
 
-        expect(await user.list()).toEqual(
+        expect(await func.list()).toEqual(
             expect.objectContaining({
                 id: expect.any(Number),
                 email: 'cardozo10@email.com',
@@ -80,7 +80,7 @@ describe('listUsers', () => {
 
 describe('getByEmail', () => {
     it('Valid list', async () => {
-        UserModel.findOne = jest.fn().mockImplementation(() => ({
+        FuncModel.findOne = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 id: 1,
                 email: 'cardozo10@email.com',
@@ -89,7 +89,7 @@ describe('getByEmail', () => {
             }),
         }));
 
-        expect(await user.getByEmail({
+        expect(await func.getByEmail({
             email: 'cardozo10@email.com'
         })).toEqual(
             expect.objectContaining({
@@ -103,15 +103,15 @@ describe('getByEmail', () => {
     });
 });
 
-describe('deleteUser', () => {
+describe('deleteFunc', () => {
     it('Valid delete', async () => {
-        UserModel.deleteOne = jest.fn().mockImplementation(() => ({
+        FuncModel.deleteOne = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 deletedCount: 1,
             }),
         }));
 
-        expect(await user.delete({
+        expect(await func.delete({
             email: 'jao10@email.com',
         })).toEqual(1);
     });

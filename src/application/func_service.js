@@ -2,11 +2,11 @@ const validate = require('validate.js');
 
 const Utils = require('../utils/utils');
 const Constants = require('../utils/constants');
-const UserRepository = require('../port/user_repository');
-const Constraints = require('../utils/user_validation');
+const FuncRepository = require('../port/func_repository');
+const Constraints = require('../utils/func_validation');
 const Validation = require('../utils/validation');
 
-const User = {
+const Func = {
     async create(data) {
         try {
             const validation = Validation.create(data);
@@ -16,7 +16,7 @@ const User = {
 
             data.id = Utils.generateUuid();
 
-            const response = await UserRepository.create(data);
+            const response = await FuncRepository.create(data);
 
             if (response.code === 11000) {
                 const result = Constants.ErrorDuplicate;
@@ -37,7 +37,7 @@ const User = {
                 return response;
             }
 
-            const response = await UserRepository.update(data);
+            const response = await FuncRepository.update(data);
 
             if (response === []) {
                 const result = Constants.ErrorNotFound;
@@ -58,7 +58,7 @@ const User = {
                 return response;
             }
 
-            const response = await UserRepository.delete(data);
+            const response = await FuncRepository.delete(data);
 
             return response;
         } catch (error) {
@@ -75,7 +75,7 @@ const User = {
                 return response;
             }
 
-            const response = await UserRepository.getByEmail(data);
+            const response = await FuncRepository.getByEmail(data);
 
             return response;
         } catch (error) {
@@ -85,7 +85,7 @@ const User = {
 
     async list() {
         try {
-            const response = await UserRepository.list();
+            const response = await FuncRepository.list();
 
             return response;
         } catch (error) {
@@ -93,4 +93,4 @@ const User = {
         }
     },
 };
-module.exports = User;
+module.exports = Func;

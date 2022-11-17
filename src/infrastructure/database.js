@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = `mongodb+srv://user:user@cluster0.t34ihul.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://user:user@cluster0.zpt6fzj.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -23,8 +23,8 @@ const UserSchema = new Schema({
     senha: String,
 });
 
-const UserModel = mongoose.model('UserModel', UserSchema);
+const FuncModel = mongoose.model('FuncModel', UserSchema);
 
 module.exports = {
-    UserModel,
+    FuncModel,
 };

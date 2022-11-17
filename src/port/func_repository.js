@@ -1,9 +1,9 @@
-const { UserModel } = require('../infrastructure/database');
+const { FuncModel } = require('../infrastructure/database');
 
-const UserRepository = {
+const FuncRepository = {
     async create(data) {
         try {
-            const model = new UserModel(data);
+            const model = new FuncModel(data);
             const response = await model.save();
             return response.toObject();
         } catch (e) {
@@ -18,7 +18,7 @@ const UserRepository = {
             };
             const options = { new: true };
             const filter = { email: data.email };
-            const result = await UserModel.findOneAndUpdate(filter, update, options).exec();
+            const result = await FuncModel.findOneAndUpdate(filter, update, options).exec();
             if (result === null) return []
             return result.toObject();
         } catch (e) {
@@ -28,7 +28,7 @@ const UserRepository = {
 
     async list() {
         try {
-            const result = await UserModel.find().exec();
+            const result = await FuncModel.find().exec();
             return result;
         } catch (error) {
             return error;
@@ -37,7 +37,7 @@ const UserRepository = {
 
     async getByEmail(data) {
         try {
-            const result = await UserModel.findOne({ email: data.email }).exec();
+            const result = await FuncModel.findOne({ email: data.email }).exec();
             return result;
         } catch (e) {
             return e;
@@ -46,7 +46,7 @@ const UserRepository = {
 
     async delete(data) {
         try {
-            const result = await UserModel.deleteOne({ email: data.email }).exec();
+            const result = await FuncModel.deleteOne({ email: data.email }).exec();
             return result.deletedCount;
         } catch (error) {
             return error;
@@ -54,4 +54,4 @@ const UserRepository = {
     },
 };
 
-module.exports = UserRepository;
+module.exports = FuncRepository;
