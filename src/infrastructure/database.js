@@ -9,7 +9,7 @@ mongoose.connect(uri, {
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const FuncSchema = new Schema({
     id: {
         type: String,
         index: true,
@@ -23,7 +23,7 @@ const UserSchema = new Schema({
     senha: String,
 });
 
-const FuncModel = mongoose.model('FuncModel', UserSchema);
+const FuncModel = mongoose.model('FuncModel', FuncSchema);
 
 module.exports = {
     FuncModel,
