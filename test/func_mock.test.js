@@ -6,16 +6,16 @@ describe('create', () => {
         FuncModel.prototype.save = jest.fn().mockImplementation(() => ({
             toObject: () => ({
                 id: 1,
-                nome: "João",
-                email: "joao@inatel.br",
+                nome: "Erich",
+                email: "erich@tabajara.net.br",
                 senha: "123456789",
             }),
         }));
 
         expect(await func.create({
             id: 1,
-            nome: "João",
-            email: "joao@inatel.br",
+            nome: "Erich Pfaffenbach",
+            email: "erich@tabajara.net.br",
             senha: "123456789"
         })).toEqual(
             expect.objectContaining({
@@ -29,21 +29,21 @@ describe('create', () => {
 });
 
 describe('editFunc', () => {
-    it('Valid edit', async () => {
+    it('Valid Edit', async () => {
         FuncModel.findOneAndUpdate = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 toObject: () => ({
                     id: 1,
-                    senha: '123Maria',
-                    email: 'jao10@email.com',
-                    nome: 'Maria João',
+                    senha: '46829308',
+                    email: 'nelson@tabajara.net.br',
+                    nome: 'Nelson Marcondes',
                 }),
             }),
         }));
 
         expect(await func.update({
-            email: 'jao10@email.com',
-            nome: 'Maria João',
+            email: 'nelson@tabajara.net.br',
+            nome: 'Nelson Marcondes',
         })).toEqual(
             expect.objectContaining({
                 email: expect.any(String),
@@ -60,8 +60,8 @@ describe('listFunc', () => {
         FuncModel.find = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 id: 1,
-                email: 'cardozo10@email.com',
-                nome: 'André Cardozo',
+                email: 'narcizo@tabajara.net.br',
+                nome: 'Narcizo Cardozo',
                 senha: 'teste1234',
             }),
         }));
@@ -69,8 +69,8 @@ describe('listFunc', () => {
         expect(await func.list()).toEqual(
             expect.objectContaining({
                 id: expect.any(Number),
-                email: 'cardozo10@email.com',
-                nome: 'André Cardozo',
+                email: 'narcizo@tabajara.net.br',
+                nome: 'Narcizo Cardozo',
                 senha: 'teste1234',
             }),
         );
@@ -83,19 +83,19 @@ describe('getByEmail', () => {
         FuncModel.findOne = jest.fn().mockImplementation(() => ({
             exec: () => ({
                 id: 1,
-                email: 'cardozo10@email.com',
-                nome: 'André Cardozo',
+                email: 'narcizo@tabajara.net.br',
+                nome: 'Narcizo Cardozo',
                 senha: 'teste1234',
             }),
         }));
 
         expect(await func.getByEmail({
-            email: 'cardozo10@email.com'
+            email: 'narcizo@tabajara.net.br'
         })).toEqual(
             expect.objectContaining({
                 id: expect.any(Number),
-                email: 'cardozo10@email.com',
-                nome: 'André Cardozo',
+                email: 'narcizo@tabajara.net.br',
+                nome: 'Narcizo Cardozo',
                 senha: 'teste1234',
             }),
         );
@@ -112,7 +112,7 @@ describe('deleteFunc', () => {
         }));
 
         expect(await func.delete({
-            email: 'jao10@email.com',
+            email: 'nelson@tabajara.net.br',
         })).toEqual(1);
     });
 });
